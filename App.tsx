@@ -1,10 +1,10 @@
 
 import React, { useState } from 'react';
-import Layout from './components/Layout';
-import LessonCard from './components/LessonCard';
-import ChatWindow from './components/ChatWindow';
-import { TOPICS } from './constants';
-import { Topic, Lesson } from './types';
+import Layout from './components/Layout.tsx';
+import LessonCard from './components/LessonCard.tsx';
+import ChatWindow from './components/ChatWindow.tsx';
+import { TOPICS } from './constants.tsx';
+import { Topic, Lesson } from './types.ts';
 
 const App: React.FC = () => {
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);

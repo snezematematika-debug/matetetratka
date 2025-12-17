@@ -1,6 +1,6 @@
 
 import { GoogleGenAI } from "@google/genai";
-import { SYSTEM_PROMPT } from "./constants";
+import { SYSTEM_PROMPT } from "./constants.tsx";
 
 export const getTutorResponse = async (
   lessonTitle: string,

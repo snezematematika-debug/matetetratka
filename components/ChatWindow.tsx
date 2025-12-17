@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Lesson, Message } from '../types';
-import { getTutorResponse } from '../geminiService';
+import { Lesson, Message } from '../types.ts';
+import { getTutorResponse } from '../geminiService.ts';
 
 interface ChatWindowProps {
   lesson: Lesson;
@@ -21,11 +21,16 @@ const MathContent: React.FC<{ text: string }> = ({ text }) => {
         if (part.startsWith('$') && part.endsWith('$')) {
           const formula = part.slice(1, -1);
           try {
-            const html = (window as any).katex.renderToString(formula, {
-              throwOnError: false,
-              displayMode: false,
-            });
-            return <span key={index} dangerouslySetInnerHTML={{ __html: html }} />;
+            const katex = (window as any).katex;
+            if (katex) {
+              const html = katex.renderToString(formula, {
+                throwOnError: false,
+                displayMode: false,
+              });
+              return <span key={index} dangerouslySetInnerHTML={{ __html: html }} />;
+            } else {
+              return <span key={index} className="font-mono text-blue-800">{part}</span>;
+            }
           } catch (e) {
             return <span key={index}>{part}</span>;
           }
